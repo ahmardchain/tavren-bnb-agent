@@ -8,7 +8,7 @@ Copy `agent-runtime/.env.example` to ignored `.env` in `agent-runtime`, or set t
 
 The account is pinned to the campaign wallet in `lib/campaign.ts`, and writes are pinned to chain 97. Configure an existing encrypted BNB SDK keystore for that account and its password locally. This runner does not create wallets, import keys or expose a signing API. An existing browser wallet remains usable through the separate website's user-signed repayment flow.
 
-`AI_GATEWAY_API_KEY` is required for the priced service's model explanation. The model is `openai/gpt-6-luna-fast`, matching the eve agent. Store the credential in the host's secrets or ignored local environment. The payment token is read from the pinned Commerce deployment; check its address and decimals before setting `TAVREN_SERVICE_PRICE_RAW`. Prices are atomic token units, not USD strings.
+`AI_GATEWAY_API_KEY` is required for the priced service's model explanation. The model is `alibaba/qwen3.7-flash`, shared with the eve agent through `agent/lib/model.ts` and selected from the Gateway's free-credit eligible catalog. Store the credential in the host's secrets or ignored local environment. The payment token is read from the pinned Commerce deployment; check its address and decimals before setting `TAVREN_SERVICE_PRICE_RAW`. Prices are atomic token units, not USD strings.
 
 From `agent-runtime`:
 

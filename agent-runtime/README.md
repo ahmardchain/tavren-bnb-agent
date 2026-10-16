@@ -45,3 +45,7 @@ Keep operator credentials on trusted servers, outside browser code and source.
 
 This deployment runs the eve AI runtime. The persistent Node payment and
 repayment operator remains separately configured and disabled by default.
+
+The agent and monitoring reports share `alibaba/qwen3.7-flash` from
+`agent/lib/model.ts`, selected from AI Gateway's free-credit eligible catalog.
+Usage consumes the account's free credits and remains subject to rate limits.

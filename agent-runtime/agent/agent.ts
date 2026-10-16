@@ -1,6 +1,7 @@
 import { defineAgent } from "eve";
+import { TAVREN_MODEL } from "./lib/model.ts";
 
 export default defineAgent({
-  model: "openai/gpt-6-luna-fast",
+  model: TAVREN_MODEL,
   reasoning: "high",
 });
