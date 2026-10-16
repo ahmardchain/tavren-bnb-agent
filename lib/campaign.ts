@@ -2,6 +2,7 @@
 // This is an intended owner, not proof of ERC-8004 ownership or form submission.
 export const CAMPAIGN_OWNER = "0x4Fc7C503265df9Ed4885042D8F711199E0eF5fB9" as const;
 export const CAMPAIGN_CHAIN_ID = 97 as const;
+export const PUBLIC_AGENT_ORIGIN = "https://tavren-bnb-agent.vercel.app";
 // The owner reported submitting the official form on 16 October 2026.
 // This records submission, not organizer verification or ERC-8004 registration.
 export const REGISTRATION_STATUS = "submitted" as const;

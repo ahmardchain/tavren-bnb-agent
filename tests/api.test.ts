@@ -17,7 +17,7 @@ test("discovery does not falsely claim registry ownership or paid jobs", async (
   const card = await GET(new Request("https://example.test/.well-known/agent-card.json")).json() as { skills: { id: string }[]; capabilities: { streaming: boolean } };
   assert.equal(card.skills[0].id, "monitor-venus"); assert.equal(card.capabilities.streaming, false);
   const registration = await (await import("../app/agent.json/route.ts")).GET(new Request("https://example.test/agent.json")).json() as { active: boolean; registrations: unknown[]; x402Support: boolean };
-  assert.equal(registration.active, false); assert.deepEqual(registration.registrations, []); assert.equal(registration.x402Support, false);
+  assert.equal(registration.active, true); assert.deepEqual(registration.registrations, []); assert.equal(registration.x402Support, false);
 });
 test("unsupported A2A methods cannot activate paid work", async () => {
   const { POST } = await import("../app/api/agent/route.ts");

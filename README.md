@@ -14,7 +14,7 @@ Preview: https://tavren-bnb.ahmardchain.chatgpt.site (initially owner-private).
 
 ## Current limits
 
-This is an early build, not a qualified campaign entry. The intended campaign owner is `0x4Fc7C503265df9Ed4885042D8F711199E0eF5fB9` on chain 97. The owner confirmed official form submission on 16 October 2026; this is not organizer verification. No ERC-8004 identity, listing, independent hires or connected operator signer has been supplied. The draft registration metadata deliberately reports active=false and an empty registrations array.
+This is an early build, not a qualified campaign entry. The intended campaign owner is `0x4Fc7C503265df9Ed4885042D8F711199E0eF5fB9` on chain 97. The owner confirmed official form submission on 16 October 2026; this is not organizer verification. No ERC-8004 identity, listing, independent hires or connected operator signer has been supplied. Public read-only monitoring and ERC-8004 metadata are published on the Vercel domain. The metadata reports a live endpoint with an empty registrations array until the owner signs and the identity is verified.
 
 The website is private. Organizers and marketplaces will need a public endpoint before identity registration/listing. The separate eve harness and Node operator need an operator-owned model connection. The operator now implements signed ERC-8183 monitoring quotes, strict funded-job checks, persistent deliverables and submission, plus a separate disabled-by-default bounded repayment command. It requires a persistent Node host, configured limits and the operator's encrypted signer. Model calls, wallet signing and paid jobs were not executed during this build. See [operator setup](agent-runtime/operator/README.md).
 
@@ -52,7 +52,7 @@ Connect the model through eve setup or an operator-owned AI Gateway credential. 
 | POST /api/plan | Fresh server read to unsigned exact repayment calldata |
 | GET /.well-known/agent-card.json | A2A discovery for monitor-venus |
 | POST /api/agent | JSON-RPC message/send with data part containing wallet and optional policy |
-| GET /agent.json | Inactive draft ERC-8004 metadata |
+| GET /agent.json | Public ERC-8004 metadata; identity registration pending |
 
 Policy: triggerBps=13500 means 1.35x, targetBps=16000 means 1.60x, maxRepayUsd is a decimal string. Prepared plans expire after 60 seconds.
 
@@ -82,3 +82,15 @@ Browser rendering, mobile wallet signing and paid-job behavior have not been ver
 - [Mandate listing guide](https://www.mandatemarkets.com/build)
 
 Design decisions and name collision notes: brand-spec.md.
+
+## Public identity setup
+
+- Public card: https://tavren-bnb-agent.vercel.app/.well-known/agent-card.json
+- Registration file: https://tavren-bnb-agent.vercel.app/metadata
+- Wallet review: https://tavren-bnb-agent.vercel.app/register
+- Network: BSC testnet, chain **97**. Identity registry: `0x8004A818BFB912233c491871b3d84c89A494BD9e`.
+- Registry ID: **pending owner signature**. No registration transaction has been sent by the builder tooling.
+
+The review page prepares `register(string)` with the public registration URI and zero transaction value. It simulates the call, checks current gas and wallet balance, and blocks another registration when the wallet owns an identity or has pending transactions. Only the campaign wallet can submit through the page. A saved pending hash is verified before another submission; receipt, mint event, transaction data, current owner and token URI must agree.
+
+After confirmation, publish the verified registry ID and chain in this README and the registration metadata before claiming the identity step complete. Public metadata does not enable paid jobs or autonomous signing.
