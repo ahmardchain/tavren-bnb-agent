@@ -14,9 +14,9 @@ Preview: https://tavren-bnb.ahmardchain.chatgpt.site (initially owner-private).
 
 ## Current limits
 
-This is an early build, not a qualified campaign entry. The intended campaign owner is `0x4Fc7C503265df9Ed4885042D8F711199E0eF5fB9` on chain 97. Official form submission is pending; an email address is still needed. No ERC-8004 identity, listing, independent hires, paid-job configuration or autonomous operator wallet has been supplied. The draft registration metadata deliberately reports active=false and an empty registrations array. The campaign screen has a verified prefilled official form link. Configuring the address does not submit the form or prove onchain ownership.
+This is an early build, not a qualified campaign entry. The intended campaign owner is `0x4Fc7C503265df9Ed4885042D8F711199E0eF5fB9` on chain 97. The owner confirmed official form submission on 16 October 2026; this is not organizer verification. No ERC-8004 identity, listing, independent hires or connected operator signer has been supplied. The draft registration metadata deliberately reports active=false and an empty registrations array.
 
-The initial website is private. Organizers and marketplaces will need a public endpoint before registration/listing. The separate eve harness needs an operator-owned model connection before conversational use. Model calls, wallet signing and paid jobs were not executed during this build.
+The website is private. Organizers and marketplaces will need a public endpoint before identity registration/listing. The separate eve harness and Node operator need an operator-owned model connection. The operator now implements signed ERC-8183 monitoring quotes, strict funded-job checks, persistent deliverables and submission, plus a separate disabled-by-default bounded repayment command. It requires a persistent Node host, configured limits and the operator's encrypted signer. Model calls, wallet signing and paid jobs were not executed during this build. See [operator setup](agent-runtime/operator/README.md).
 
 Coverage uses the Core borrow limit and stored balances, not a guaranteed liquidation threshold. Scenario controls shock collateral capacity while holding debt/prices constant. Other pools and VAI need separate adapters. User repayments from the app must not be mislabelled as transactions by an autonomous agent wallet.
 
@@ -58,9 +58,9 @@ Policy: triggerBps=13500 means 1.35x, targetBps=16000 means 1.60x, maxRepayUsd i
 
 ## Campaign next steps
 
-1. The campaign owner is configured. Add the registration email and submit the official form before qualifying actions.
+1. Campaign form submission was confirmed by the owner. Retain the confirmation and use the same wallet throughout.
 2. Configure and validate an agent-owned testnet lending position and the operator's bounded signing runtime.
-3. Integrate BNB SDK ERC-8183 signed negotiation, funded-job validation, public deliverable storage and submission. Paid negotiation is intentionally unavailable in this version.
+3. Connect and host the Node operator, then validate its signed negotiation, funded-job fulfillment, deliverable retrieval and submission on testnet. The website's read-only A2A endpoint remains separate from the priced operator endpoint.
 4. Make the endpoint public, register ERC-8004 from the campaign wallet, list on a shortlisted marketplace, and publish registry ID and chain in a public GitHub repository.
 5. Hire three different agents across two approved marketplaces. Attract three genuine completed hires from independent wallets, and perform five matching actions over three separate days. Do not fund customers or fabricate activity.
 
@@ -70,7 +70,7 @@ Deadline: 5 November 2026, 12:00 UTC / 13:00 Nigeria. Rewards are physical merch
 
 The GitHub workflow in `.github/workflows/ci.yml` runs the tests, typechecks and production builds for both the application and agent runtime on Node 24. It uses both committed lockfiles and requires no wallet or model credentials.
 
-Thirteen risk, adapter and API tests pass. The frontend TypeScript check and production build pass. The separate eve harness also passes its typecheck and Node server build. Optional native compression build scripts are explicitly disabled; they are not needed by the lending tools. A live read-only probe returned chain 97, block 137004919 and no debt for the non-user test address 0x0000000000000000000000000000000000000001. This read is not a campaign transaction.
+The application and operator have deterministic tests for risk math, adapters, APIs, spending limits, replay prevention, daily budgets, persistence, concurrency and signed quotes. CI runs tests, typechecks and builds for both projects. Optional native compression build scripts are explicitly disabled; they are not needed by the lending tools. A prior live read-only probe returned chain 97, block 137004919 and no debt for the non-user test address 0x0000000000000000000000000000000000000001. This read is not a campaign transaction.
 
 Browser rendering, mobile wallet signing and paid-job behavior have not been verified. The supported control-browser skill is absent from this managed session, so no alternative browser was installed or used.
 

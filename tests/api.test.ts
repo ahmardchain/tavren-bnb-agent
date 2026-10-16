@@ -25,3 +25,10 @@ test("unsupported A2A methods cannot activate paid work", async () => {
   const result = await response.json() as { id: number; error: { code: number } };
   assert.equal(result.id, 7); assert.equal(result.error.code, -32601);
 });
+test("campaign submission records the owner's confirmation without claiming registry verification", async () => {
+  const { GET } = await import("../app/api/campaign/route.ts");
+  const campaign = await GET().json() as { registrationStatus: string; registrationEvidence: { source: string }; registryId: unknown };
+  assert.equal(campaign.registrationStatus, "submitted");
+  assert.equal(campaign.registrationEvidence.source, "owner-confirmation");
+  assert.equal(campaign.registryId, null);
+});

@@ -12,7 +12,11 @@
     "dev": "eve dev",
     "eval": "eve eval",
     "start": "eve start",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "operator:check": "node --experimental-strip-types operator/main.ts check",
+    "operator:repay": "node --experimental-strip-types operator/main.ts repay",
+    "operator:serve": "node --experimental-strip-types operator/main.ts serve"
   },
   "dependencies": {
     "@bnbagent/sdk": "0.6.0",

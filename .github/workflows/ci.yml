@@ -46,6 +46,9 @@ jobs:
       - name: Check agent types
         working-directory: agent-runtime
         run: pnpm typecheck
+      - name: Test operator boundaries and replay protection
+        working-directory: agent-runtime
+        run: pnpm test
       - name: Build agent server
         working-directory: agent-runtime
         run: pnpm build

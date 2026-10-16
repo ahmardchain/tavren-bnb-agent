@@ -79,9 +79,9 @@ export async function readPosition(input: string, client = publicClient()): Prom
 }
 
 export type PreparedTransaction = { kind: "reset" | "approve" | "repay"; to: Address; data: `0x${string}`; value: string };
-export async function prepareRepayment(account: string, policy: Policy) {
+export async function prepareRepayment(account: string, policy: Policy, client = publicClient()) {
   // Re-read on the server; never accept caller-supplied balances or calldata.
-  const snapshot = await readPosition(account);
+  const snapshot = await readPosition(account, client);
   const plan = makePlan(snapshot, policy);
   const transactions: PreparedTransaction[] = [];
   if (plan.action === "REPAY" && plan.market) {
