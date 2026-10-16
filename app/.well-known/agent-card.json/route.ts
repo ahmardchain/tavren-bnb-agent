@@ -1,0 +1,4 @@
+export function GET(request: Request) {
+  const origin = new URL(request.url).origin;
+  return Response.json({ protocolVersion: "0.3.0", name: "Tavren", description: "Health factor monitoring for Venus Core on BSC testnet. Reads block-pinned lending evidence and prepares bounded debt repayment plans. This first version does not sell escrowed jobs or autonomously sign transactions.", url: `${origin}/api/agent`, version: "0.1.0", capabilities: { streaming: false, pushNotifications: false }, defaultInputModes: ["application/json", "text/plain"], defaultOutputModes: ["application/json"], skills: [{ id: "monitor-venus", name: "Inspect a Venus Core loan", description: "Supply a BSC testnet wallet in a data part as {wallet, policy?}. Returns a block-pinned loan snapshot and capped repayment plan.", tags: ["health-factor", "venus", "bsc-testnet"], examples: ["Check my Venus Core loan on BSC testnet."] }] });
+}

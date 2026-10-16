@@ -1,0 +1,29 @@
+{
+  "name": "agent-runtime",
+  "version": "0.0.0",
+  "type": "module",
+  "imports": {
+    "#*": "./agent/*",
+    "#evals/*": "./evals/*"
+  },
+  "scripts": {
+    "build": "eve build",
+    "deploy": "eve deploy",
+    "dev": "eve dev",
+    "eval": "eve eval",
+    "start": "eve start",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@bnbagent/sdk": "0.6.0",
+    "ai": "^7.0.0",
+    "eve": "0.73.0",
+    "viem": "2.57.4",
+    "zod": "4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "24.x",
+    "just-bash": "^3.6.0",
+    "typescript": "7.0.2"
+  }
+}
