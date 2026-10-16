@@ -1,5 +1,5 @@
 // Supplied by the project owner on 15 October 2026.
-// This is an intended owner, not proof of ERC-8004 ownership or form submission.
+// Ownership evidence is recorded separately in agent-identity.ts.
 export const CAMPAIGN_OWNER = "0x4Fc7C503265df9Ed4885042D8F711199E0eF5fB9" as const;
 export const CAMPAIGN_CHAIN_ID = 97 as const;
 export const PUBLIC_AGENT_ORIGIN = "https://tavren-bnb-agent.vercel.app";

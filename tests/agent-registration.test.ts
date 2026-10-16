@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { decodeFunctionData, encodeAbiParameters, encodeEventTopics } from "viem";
 import { CAMPAIGN_OWNER, PUBLIC_AGENT_ORIGIN } from "../lib/campaign.ts";
 import { AGENT_URI, agentCard, registrationDocument } from "../lib/agent-discovery.ts";
+import { VERIFIED_IDENTITY } from "../lib/agent-identity.ts";
 import { IDENTITY_REGISTRY, identityAbi, registrationData, prepareRegistration, verifyRegistration } from "../lib/agent-registration.ts";
 import { publicClient } from "../lib/venus.ts";
 
@@ -24,11 +25,14 @@ function client(overrides: Record<string, unknown> = {}) {
   } as unknown as ReturnType<typeof publicClient>;
 }
 
-test("discovery uses the public domain and leaves the registry ID unclaimed", () => {
+test("discovery publishes the verified BSC testnet identity and its evidence", () => {
   assert.equal(agentCard().url, `${PUBLIC_AGENT_ORIGIN}/api/agent`);
   const metadata = registrationDocument();
-  assert.deepEqual(metadata.registrations, []);
-  assert.equal(metadata.campaign.identityStatus, "awaiting-wallet-signature");
+  assert.deepEqual(metadata.registrations, [{ agentId: 2640, agentRegistry: `eip155:97:${IDENTITY_REGISTRY}` }]);
+  assert.equal(metadata.campaign.identityStatus, "verified");
+  assert.equal(metadata.campaign.identityEvidence.agentURI, AGENT_URI);
+  assert.equal(metadata.campaign.identityEvidence.owner, CAMPAIGN_OWNER);
+  assert.equal(metadata.campaign.identityEvidence.transactionHash, VERIFIED_IDENTITY.transactionHash);
   assert.ok(metadata.services.every(s => s.endpoint.startsWith(PUBLIC_AGENT_ORIGIN)));
 });
 

@@ -1,6 +1,7 @@
 import { CAMPAIGN_OWNER, CAMPAIGN_CHAIN_ID, PUBLIC_AGENT_ORIGIN } from "./campaign.ts";
+import { VERIFIED_IDENTITY } from "./agent-identity.ts";
 
-export const AGENT_URI = `${PUBLIC_AGENT_ORIGIN}/metadata`;
+export { AGENT_URI } from "./agent-identity.ts";
 export function agentCard() {
   return {
     protocolVersion: "0.3.0", name: "Tavren", version: "0.3.0",
@@ -18,7 +19,8 @@ export function registrationDocument() {
     description: "Health-factor monitoring: block-pinned Venus Core loan checks and capped repayment planning on BSC testnet (97). The public monitoring endpoint is live and read-only. Autonomous loan execution, priced jobs and marketplace listing remain pending.",
     image: `${PUBLIC_AGENT_ORIGIN}/tavren.svg`,
     services: [{ name: "A2A", endpoint: `${PUBLIC_AGENT_ORIGIN}/.well-known/agent-card.json`, version: "0.3.0" }, { name: "web", endpoint: `${PUBLIC_AGENT_ORIGIN}/register` }],
-    active: true, x402Support: false, registrations: [],
-    campaign: { intendedOwner: CAMPAIGN_OWNER, chainId: CAMPAIGN_CHAIN_ID, identityStatus: "awaiting-wallet-signature", category: "health-factor" },
+    active: true, x402Support: false,
+    registrations: [{ agentId: Number(VERIFIED_IDENTITY.agentId), agentRegistry: VERIFIED_IDENTITY.agentRegistry }],
+    campaign: { intendedOwner: CAMPAIGN_OWNER, chainId: CAMPAIGN_CHAIN_ID, identityStatus: "verified", identityEvidence: VERIFIED_IDENTITY, category: "health-factor" },
   };
 }

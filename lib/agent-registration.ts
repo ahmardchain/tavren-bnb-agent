@@ -1,11 +1,10 @@
 import { encodeFunctionData, parseAbi, parseEventLogs, type Hash } from "viem";
 import { CAMPAIGN_OWNER, CAMPAIGN_CHAIN_ID } from "./campaign.ts";
 import { AGENT_URI } from "./agent-discovery.ts";
+import { IDENTITY_REGISTRY } from "./agent-identity.ts";
 import { publicClient } from "./venus.ts";
 
-// Canonical deployment verified against bnb-chain/bnbagent-sdk and
-// erc-8004/erc-8004-contracts on 2026-10-16.
-export const IDENTITY_REGISTRY = "0x8004A818BFB912233c491871b3d84c89A494BD9e" as const;
+export { IDENTITY_REGISTRY } from "./agent-identity.ts";
 export const identityAbi = parseAbi([
   "function register(string agentURI) returns (uint256 agentId)",
   "function balanceOf(address owner) view returns (uint256)",
