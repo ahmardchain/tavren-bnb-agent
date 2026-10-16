@@ -33,3 +33,15 @@ eve deploy
 ```
 
 `eve deploy` links a Vercel project if needed and deploys the agent to production. See the [eve deployment documentation](https://eve.dev/docs/guides/deployment/vercel) for authentication, environment variables, and deployment options.
+
+## Protected Tavren API
+
+`GET /eve/v1/health` is public. Agent inspection and sessions require either
+the existing Vercel OIDC authentication or HTTP Basic operator access with
+username `tavren` and `TAVREN_AGENT_PASSWORD` from the host's Secret settings.
+An absent or incorrect password grants no operator access. The password is
+separate from `AI_GATEWAY_API_KEY`; never send the Gateway key to API callers.
+Keep operator credentials on trusted servers, outside browser code and source.
+
+This deployment runs the eve AI runtime. The persistent Node payment and
+repayment operator remains separately configured and disabled by default.
